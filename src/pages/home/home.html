@@ -7,8 +7,19 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <div class="content">
+<ion-content class="article">
+    <ion-card *ngFor="let article of artcles">
+        <ion-card-header>
+            {{article.title}}
+        </ion-card-header>
+        <ion-card-content>
+            <a href="javascript:void(0);" attr.data-id="{{article.id}}" style="text-decoration:none;">
+                {{article.sub_title}}
+            </a>
+        </ion-card-content>
+    </ion-card>
+
+    <!--<div class="content">
         <div class="div">
             <div class="color color1"></div>
             <div class="color color2"></div>
@@ -68,5 +79,11 @@
         <div *ngFor="let item of items" class="{{item.class}}">
             <div *ngFor="let tt of item.items" class="color" [style.background]="tt.color"></div>
         </div>
-    </div>
+    </div>-->
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-title class="footer-title">&copy;2018 clk528</ion-title>
+    </ion-toolbar>
+</ion-footer>

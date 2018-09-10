@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
-import Color from "./../../plugin/Colors";
+// import Color from "./../../plugin/Colors";
 
 @Component({
     selector: 'page-home',
@@ -9,10 +9,24 @@ import Color from "./../../plugin/Colors";
 
 export class HomePage {
 
-    items: Array<{ items: Array<{ color: string }>, class: string }>;
+    // items: Array<{ items: Array<{ color: string }>, class: string }>;
+
+    artcles: Array<{ title: string, sub_title: string, id: number }>;
 
     constructor(public navCtrl: NavController) {
-        this.items = [];
+        this.artcles = [];
+
+
+        for (let i = 1; i <= 10; i++) {
+            this.artcles.push({
+                title: `标题--${i}`,
+                sub_title: `子标题`,
+                id: i
+            });
+        }
+
+
+        /*this.items = [];
         Color.forEach((item) => {
             let data = {
                 class: 'div',
@@ -27,12 +41,12 @@ export class HomePage {
             this.items.push(data)
         });
 
-        setTimeout(()=>{
+        setTimeout(() => {
             this.test();
-        },500);
+        }, 500);*/
     }
 
-    test(){
-        console.log(this.items);
+    test() {
+        console.log(this.artcles);
     }
 }
