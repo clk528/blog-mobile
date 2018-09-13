@@ -8,78 +8,22 @@
 </ion-header>
 
 <ion-content class="article">
-    <ion-card *ngFor="let article of artcles">
+    <ion-card *ngFor="let article of articleList">
         <ion-card-header>
             {{article.title}}
         </ion-card-header>
         <ion-card-content>
             <a href="javascript:void(0);" attr.data-id="{{article.id}}" style="text-decoration:none;">
-                {{article.sub_title}}
+                {{article.subtitle}}
             </a>
         </ion-card-content>
     </ion-card>
 
-    <!--<div class="content">
-        <div class="div">
-            <div class="color color1"></div>
-            <div class="color color2"></div>
-            <div class="color color3"></div>
-            <div class="color color4"></div>
-            <div class="color color5"></div>
-            <div class="color color6"></div>
-            <div class="color color7"></div>
-            <div class="color color8"></div>
-        </div>
-
-        <div class="div">
-            <div class="color color9"></div>
-            <div class="color color10"></div>
-            <div class="color color11"></div>
-            <div class="color color12"></div>
-            <div class="color color13"></div>
-            <div class="color color14"></div>
-            <div class="color color15"></div>
-            <div class="color color16"></div>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content  enabled=false></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 
 
-        </div>
-
-        <div class="div">
-            <div class="color color17"></div>
-            <div class="color color18"></div>
-            <div class="color color19"></div>
-            <div class="color color20"></div>
-            <div class="color color21"></div>
-            <div class="color color22"></div>
-            <div class="color color23"></div>
-            <div class="color color24"></div>
-        </div>
-
-        <div class="div">
-            <div class="color color25"></div>
-            <div class="color color26"></div>
-            <div class="color color27"></div>
-            <div class="color color28"></div>
-            <div class="color color29"></div>
-            <div class="color color30"></div>
-            <div class="color color31"></div>
-            <div class="color color32"></div>
-        </div>
-        <div class="div">
-            <div class="color color33"></div>
-            <div class="color color34"></div>
-            <div class="color color35"></div>
-            <div class="color color36"></div>
-            <div class="color color37"></div>
-            <div class="color color38"></div>
-            <div class="color color39"></div>
-            <div class="color color40"></div>
-        </div>
-
-        <div *ngFor="let item of items" class="{{item.class}}">
-            <div *ngFor="let tt of item.items" class="color" [style.background]="tt.color"></div>
-        </div>
-    </div>-->
 </ion-content>
 
 <ion-footer>

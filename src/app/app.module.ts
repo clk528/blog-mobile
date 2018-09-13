@@ -9,6 +9,9 @@ import {ListPage} from '../pages/list/list';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 
+import {CLKModule} from "../clk";
+import {CoreModule} from "../core";
+
 @NgModule({
     declarations: [
         MyApp,
@@ -18,6 +21,8 @@ import {SplashScreen} from '@ionic-native/splash-screen';
     imports: [
         BrowserModule,
         IonicModule.forRoot(MyApp),
+        CLKModule,
+        CoreModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [

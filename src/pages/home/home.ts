@@ -1,52 +1,72 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NavController} from 'ionic-angular';
-// import Color from "./../../plugin/Colors";
+import {ArticleService} from "../../clk/service/articleService";
+
 
 @Component({
     selector: 'page-home',
     templateUrl: 'home.html'
 })
 
-export class HomePage {
-
-    // items: Array<{ items: Array<{ color: string }>, class: string }>;
-
-    artcles: Array<{ title: string, sub_title: string, id: number }>;
-
-    constructor(public navCtrl: NavController) {
-        this.artcles = [];
-
-
-        for (let i = 1; i <= 10; i++) {
-            this.artcles.push({
-                title: `标题--${i}`,
-                sub_title: `子标题`,
-                id: i
-            });
+export class HomePage implements OnInit {
+    pageInfo: {
+        page: number,
+        last_page: number
+    };
+    articleList: Array<{
+        category_id: number,
+        createUser: string,
+        created: string,
+        id: number,
+        modified: string,
+        modifyUser: string,
+        status: number,
+        subtitle: string,
+        title: string,
+        category: {
+            id: number,
+            name: string
         }
+    }>;
 
 
-        /*this.items = [];
-        Color.forEach((item) => {
-            let data = {
-                class: 'div',
-                items: []
+    constructor(public navCtrl: NavController, private article: ArticleService) {
+        this.articleList = [];
+        this.article.getArticleList().subscribe((response: any) => {
+            this.articleList = response.data;
+
+            this.pageInfo = {
+                page: response.page,
+                last_page: response.last_page
             };
-            item.forEach((color) => {
-                data.items.push({
-                    color: color
-                });
-            });
 
-            this.items.push(data)
         });
-
-        setTimeout(() => {
-            this.test();
-        }, 500);*/
     }
 
-    test() {
-        console.log(this.artcles);
+    doInfinite(infiniteScroll) {
+        let page = this.pageInfo.page + 1;
+
+        this.article.getArticleList(page).subscribe((response: any) => {
+
+            response.data.forEach((item) => {
+                this.articleList.push(item);
+            });
+
+            this.pageInfo = {
+                page: response.page,
+                last_page: response.last_page
+            };
+
+            infiniteScroll.complete();
+
+            if (page >= response.last_page) {
+                infiniteScroll.enable(false);
+            }
+
+        });
+    }
+
+    ngOnInit(): void {
+
     }
 }
